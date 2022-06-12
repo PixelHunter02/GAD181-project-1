@@ -1,41 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public Transform cam;
     CharacterController characterController;
 
     public float speed; //speed set in inspector
-    public float gravity; // set gravity speed
-    public float jumpSpeed; // set jump speed in inspector
-    private Vector3 moveDirection = Vector3.zero;
+    public float horizontalMovement; // float for horizontal Movement input (x axis)
+    public float verticalMovement; // flaot for vertical movement input (z axis)
+    public float smoothRotate = 0.1f;
+    private float smoothTurnVelocity;
 
     // Start is called before the first frame update
     void Start()
     {
-    characterController = GetComponent<CharacterController>();
+    characterController = GetComponent<CharacterController>(); // assigns the component for the character controller
+    Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (characterController.isGrounded)
-        // {
-            // We are grounded, so recalculate
-            // move direction directly from axes
+        horizontalMovement = Input.GetAxisRaw("Horizontal"); // get raw horizontal movement between -1 and 1 for the x axis
+        verticalMovement = Input.GetAxisRaw("Vertical"); // get raw vertical movement between -1 and 1 for the z axis
+        Vector3 direction = new Vector3(horizontalMovement, 0.0f, verticalMovement).normalized; // create a vector 3 for this information
 
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        moveDirection *= speed;
-
-        if (Input.GetButton("Jump"))
+        if(direction.magnitude >= 0.1f)
         {
-            moveDirection.y = jumpSpeed;
-        }
-        // }
-        moveDirection.y -= gravity * Time.deltaTime;
-        characterController.Move(moveDirection * Time.deltaTime);
+            float facingAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y; // determines the angle being face using unitys coordinate system (y axis is 0 rotating clockwise)
+            float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, facingAngle, ref smoothTurnVelocity, smoothRotate );
+            transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
 
-        // transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * mouseSpeed);
+            Vector3 moveDirection = Quaternion.Euler(0f, facingAngle, 0f) * Vector3.forward;
+
+            characterController.Move(moveDirection.normalized * speed * Time.deltaTime); // move the character
+        }
     }
 }
