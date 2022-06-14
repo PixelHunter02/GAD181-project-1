@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal"); // get raw horizontal movement between -1 and 1 for the x axis
         verticalMovement = Input.GetAxisRaw("Vertical"); // get raw vertical movement between -1 and 1 for the z axis
@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
         if(direction.magnitude >= 0.1f)
         {
             float facingAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y; // determines the angle being face using unitys coordinate system (y axis is 0 rotating clockwise)
-            float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, facingAngle, ref smoothTurnVelocity, smoothRotate );
+            float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, facingAngle, ref smoothTurnVelocity, smoothRotate);
             transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
 
             Vector3 moveDirection = Quaternion.Euler(0f, facingAngle, 0f) * Vector3.forward;
