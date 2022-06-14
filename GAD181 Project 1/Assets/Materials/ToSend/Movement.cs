@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.W))
         {
-            Debug.Log("Called");
+            //Debug.Log("Called");
             animator.SetBool("wPressed", true);
         }
         else
