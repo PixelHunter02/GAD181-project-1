@@ -25,17 +25,14 @@ public class Movement : MonoBehaviour
 
     private void Update() 
     {
-        if (characterController.enabled == true)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                //Debug.Log("Called");
-                animator.SetBool("movementPressed", true);
-            }
-            else
-            {
-                animator.SetBool("movementPressed", false);
-            }
+            //Debug.Log("Called");
+            animator.SetBool("movementPressed", true);
+        }
+        else
+        {
+            animator.SetBool("movementPressed", false);
         }
     }
 
@@ -53,8 +50,10 @@ public class Movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
 
             Vector3 moveDirection = Quaternion.Euler(0f, facingAngle, 0f) * Vector3.forward;
-
-            characterController.Move(moveDirection.normalized * speed * Time.deltaTime); // move the character
+            if(characterController.enabled)
+            {
+                characterController.Move(moveDirection.normalized * speed * Time.deltaTime); // move the character
+            }
         }
     }
 }
