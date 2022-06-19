@@ -25,14 +25,17 @@ public class Movement : MonoBehaviour
 
     private void Update() 
     {
-        if(Input.GetKey(KeyCode.W))
+        if (characterController.enabled == true)
         {
-            //Debug.Log("Called");
-            animator.SetBool("wPressed", true);
-        }
-        else
-        {
-            animator.SetBool("wPressed", false);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                //Debug.Log("Called");
+                animator.SetBool("movementPressed", true);
+            }
+            else
+            {
+                animator.SetBool("movementPressed", false);
+            }
         }
     }
 
