@@ -19,7 +19,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387450089712940, guid: 7e9d9cb3616971749b8b5d5c60eb11a9, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Industrial_Beam_Fence_01
+      value: SM_Bld_Industrial_Beam_Fence_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387450089712940, guid: 7e9d9cb3616971749b8b5d5c60eb11a9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4463495278151500, guid: 7e9d9cb3616971749b8b5d5c60eb11a9, type: 3}
       propertyPath: m_RootOrder

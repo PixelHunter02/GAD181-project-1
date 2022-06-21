@@ -7,6 +7,8 @@ TagManager:
   - PickUp
   - Zombie
   - Spawn
+  - ZombieSpawn
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX
