@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
 {
     public Transform cam;
     CharacterController characterController;
-    public Animation walkAnim;
 
     public Animator animator;
     public float speed; //speed set in inspector
@@ -19,8 +18,9 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    characterController = GetComponent<CharacterController>(); // assigns the component for the character controller
-    Cursor.lockState = CursorLockMode.Locked;
+        cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        characterController = GetComponent<CharacterController>(); // assigns the component for the character controller
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update() 

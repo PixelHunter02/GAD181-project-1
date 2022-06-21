@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickUp
+  - Zombie
+  - Spawn
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - wall
   - Water
   - UI
   - 

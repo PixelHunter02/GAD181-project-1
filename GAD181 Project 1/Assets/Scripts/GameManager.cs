@@ -19,26 +19,35 @@ public class GameManager : MonoBehaviour
     public int random;
     public CharacterController characterController;
     public GameObject player;
-    //public TextMeshProUGUI retry;
+    public GameObject zombie;
 
     private void OnEnable() 
     {
         CollectiblePickUp.collectiblePickupEvent += Win;    
-
+        timerDoneEvent += OnTimerOver;
     }
 
     private void OnDisable() 
     {
-        CollectiblePickUp.collectiblePickupEvent -= Win;    
+        CollectiblePickUp.collectiblePickupEvent -= Win;
+        timerDoneEvent -= OnTimerOver;    
     }
+
     private void Start() 
     {
         timer = 10f;
         random = Random.Range(0,6);
 
+        spawn = GameObject.FindGameObjectsWithTag("Spawn");
         Instantiate(win, spawn[random].gameObject.transform.position, Quaternion.identity);
         characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
         player = GameObject.FindGameObjectWithTag("Player");
+        zombie = GameObject.FindGameObjectWithTag("Zombie");
+        // if(spawn == null)
+        // {
+        //     GameObject.FindGameObjectsWithTag("Spawn");
+        // }
+        // Debug.Log(spawn);
     }
 
     // Update is called once per frame
@@ -53,10 +62,6 @@ public class GameManager : MonoBehaviour
         if(timer <= 0)
         {
             timerDoneEvent?.Invoke();
-            timer = 10;
-            characterController.enabled = false;
-            player.transform.position = new Vector3(14.78125f, 3.814697e-06f, 33f);
-            Time.timeScale = 0;
             //retry.text = "Press E To Try Again";
         }
 
@@ -67,6 +72,16 @@ public class GameManager : MonoBehaviour
             // retry.text = "";
         }
     }
+
+    void OnTimerOver()
+    {
+        timer = 10;
+        characterController.enabled = false;
+        player.transform.position = new Vector3(-3f, 0f, 0f);
+        zombie.transform.position = new Vector3(-9.37f, 0, -3.64f);
+        Time.timeScale = 0;
+    }
+
     void Win()
     {
         Cursor.lockState = CursorLockMode.Confined;
