@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public GameObject player;
     public GameObject zombie;
+    public GameObject lightSource;
     #endregion
 
     #region int
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         random = Random.Range(0,spawn.Length);
         
         Instantiate(win, spawn[random].gameObject.transform.position, Quaternion.identity);
+        Instantiate(lightSource, spawn[random].gameObject.transform.position, Quaternion.identity);
         
         characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
     }
