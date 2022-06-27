@@ -18,6 +18,7 @@ public class PlayerCollisionScript : MonoBehaviour
             gameManager.GetComponent<GameManager>().timerUIGO.SetActive(false);
         Time.timeScale = 0;
             zombieCollidedUI.SetActive(true);
+            GameManager.wins = 0;
         }
     }
 

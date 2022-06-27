@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     #region int
     public int random;
+    public static int wins;
     #endregion
     
     #region CharacterControllers
@@ -126,11 +127,13 @@ public class GameManager : MonoBehaviour
         zombie.GetComponent<AudioSource>().enabled = false;
         timerUIGO.SetActive(false);
         Time.timeScale = 0;
+        wins = 0;
     }
 
     void Win()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("WinScene");
+        wins += 1;
     }
 }
