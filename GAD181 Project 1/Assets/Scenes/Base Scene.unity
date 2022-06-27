@@ -975,7 +975,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598522965}
-  m_LocalRotation: {x: 0.361299, y: -0.000000016044089, z: 0.0000000062166476, w: 0.93245006}
+  m_LocalRotation: {x: 0.36129904, y: 0.00000001604409, z: -0.0000000062166494, w: 0.93245006}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1189,7 +1189,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690707251}
-  m_LocalRotation: {x: 0.34427842, y: -0.000000016154509, z: 0.000000005923785, w: 0.9388676}
+  m_LocalRotation: {x: 0.34427842, y: 0.000000016154516, z: -0.0000000059237872, w: 0.9388676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1357,6 +1357,7 @@ MonoBehaviour:
   zombie: {fileID: 0}
   timerHitsZeroUI: {fileID: 1730549083}
   timerUIGO: {fileID: 1709624515}
+  directionalLight: {fileID: 203844586}
   random: 0
   characterController: {fileID: 0}
 --- !u!4 &816390511
@@ -1562,7 +1563,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.34427842, y: -0.000000016174269, z: 0.0000000059153114, w: 0.9388676}
+  m_LocalRotation: {x: 0.34427842, y: 0.000000016174674, z: -0.0000000059163954, w: 0.9388676}
   m_LocalPosition: {x: -3, y: 10.388527, z: -7.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

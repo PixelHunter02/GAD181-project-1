@@ -15,10 +15,6 @@ public class GameManager : MonoBehaviour
     public float timer;
     #endregion
 
-    #region Bools
-    public static bool interacting;
-    #endregion
-
     #region UI
     public TextMeshProUGUI timerUI;
     #endregion
@@ -34,6 +30,7 @@ public class GameManager : MonoBehaviour
     public GameObject zombie;
     public GameObject timerHitsZeroUI;
     public GameObject timerUIGO;
+    public GameObject directionalLight;
     #endregion
 
     #region int
@@ -86,9 +83,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timer >= 0 && interacting != true)
+        if(timer >= 0)
         {
             timer -= Time.deltaTime;
+            directionalLight.transform.Rotate(6f * Time.deltaTime, 0, 0);
             timerUI.text = "Time Until Reset: " + timer.ToString("F2");
         }
 
@@ -103,6 +101,7 @@ public class GameManager : MonoBehaviour
         {
             characterController.enabled = true;
             zombie.GetComponent<AudioSource>().enabled = true;
+            directionalLight.transform.eulerAngles = new Vector3(120, 0, 0); 
             Time.timeScale = 1;
             timerHitsZeroUI.SetActive(false);
             // retry.text = "";
@@ -112,6 +111,7 @@ public class GameManager : MonoBehaviour
         {
             characterController.enabled = true;
             zombie.GetComponent<AudioSource>().enabled = true;
+            directionalLight.transform.eulerAngles = new Vector3(120, 0, 0);
             Time.timeScale = 1;
             timerUIGO.SetActive(true);
             // retry.text = "";
