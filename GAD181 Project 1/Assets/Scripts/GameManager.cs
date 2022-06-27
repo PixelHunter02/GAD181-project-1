@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public GameObject player;
     public GameObject zombie;
-    public GameObject lightSource;
+    public GameObject timerHitsZeroUI;
+    public GameObject timerUIGO;
     #endregion
 
     #region int
@@ -77,7 +78,6 @@ public class GameManager : MonoBehaviour
         random = Random.Range(0,spawn.Length);
         
         Instantiate(win, spawn[random].gameObject.transform.position, Quaternion.identity);
-        Instantiate(lightSource, spawn[random].gameObject.transform.position, Quaternion.identity);
         
         characterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
     }
@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
         if(timer <= 0)
         {
             timerDoneEvent?.Invoke();
+            timerHitsZeroUI.SetActive(true);
             //retry.text = "Press E To Try Again";
         }
 
@@ -102,6 +103,16 @@ public class GameManager : MonoBehaviour
             characterController.enabled = true;
             zombie.GetComponent<AudioSource>().enabled = true;
             Time.timeScale = 1;
+            timerHitsZeroUI.SetActive(false);
+            // retry.text = "";
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            characterController.enabled = true;
+            zombie.GetComponent<AudioSource>().enabled = true;
+            Time.timeScale = 1;
+            timerUIGO.SetActive(true);
             // retry.text = "";
         }
     }
@@ -113,6 +124,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = playerSpawn.transform.position;
         zombie.transform.position = zombieSpawn.transform.position;
         zombie.GetComponent<AudioSource>().enabled = false;
+        timerUIGO.SetActive(false);
         Time.timeScale = 0;
     }
 

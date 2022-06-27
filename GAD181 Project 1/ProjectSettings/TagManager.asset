@@ -9,6 +9,7 @@ TagManager:
   - Spawn
   - ZombieSpawn
   - PlayerSpawn
+  - Background
   layers:
   - Default
   - TransparentFX
