@@ -13,7 +13,7 @@ public class PlayerCollisionScript : MonoBehaviour
             gameManager.GetComponent<GameManager>().timer = 10;
             gameManager.GetComponent<GameManager>().characterController.enabled = false;
             gameManager.GetComponent<GameManager>().player.transform.position = gameManager.GetComponent<GameManager>().playerSpawn.transform.position;
-            gameManager.GetComponent<GameManager>().zombie.transform.position = gameManager.GetComponent<GameManager>().zombieSpawn.transform.position;
+            gameManager.GetComponent<GameManager>().zombie.transform.position = gameManager.GetComponent<GameManager>().zombieSpawn[Random.Range(0,gameManager.GetComponent<GameManager>().zombieSpawn.Length)].transform.position;
             gameManager.GetComponent<GameManager>().zombie.GetComponent<AudioSource>().enabled = false;
             gameManager.GetComponent<GameManager>().timerUIGO.SetActive(false);
         Time.timeScale = 0;

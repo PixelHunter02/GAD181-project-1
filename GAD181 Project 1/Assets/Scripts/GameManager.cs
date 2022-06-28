@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject aStar;
     public GameObject[] maps;
     public GameObject[] spawn;
-    public GameObject zombieSpawn;
+    public GameObject[] zombieSpawn;
     public GameObject playerSpawn;
     public GameObject win;
     public GameObject player;
@@ -60,14 +60,14 @@ public class GameManager : MonoBehaviour
 
         aStar.SetActive(true);
 
-        zombieSpawn = GameObject.FindGameObjectWithTag("ZombieSpawn");
+        zombieSpawn = GameObject.FindGameObjectsWithTag("ZombieSpawn");
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
 
         player = GameObject.FindGameObjectWithTag("Player");
         zombie = GameObject.FindGameObjectWithTag("Zombie");
 
         player.transform.position = playerSpawn.transform.position;
-        zombie.transform.position = zombieSpawn.transform.position;
+        zombie.transform.position = zombieSpawn[Random.Range(0,zombieSpawn.Length)].transform.position;
         
         timer = 10f;
         
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
         timer = 10;
         characterController.enabled = false;
         player.transform.position = playerSpawn.transform.position;
-        zombie.transform.position = zombieSpawn.transform.position;
+        zombie.transform.position = zombieSpawn[Random.Range(0,zombieSpawn.Length)].transform.position;
         zombie.GetComponent<AudioSource>().enabled = false;
         timerUIGO.SetActive(false);
         Time.timeScale = 0;
